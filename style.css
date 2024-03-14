@@ -1,0 +1,130 @@
+* {
+    font-family: sans-serif;
+}
+
+body {
+    overflow: hidden;
+
+    #start {
+        h1 {
+            position: absolute;
+            width: 100svw;
+            text-align: center;
+            font-size: 5svw;
+        }
+    }
+
+    #scene3D {
+        /* background-color: black; */
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100svw;
+        perspective: 180svw;
+        perspective-origin: 50% calc(50% - 30svw);
+
+        #plan3D {
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-90deg) translateZ(-30svw);
+            transform-origin: 50% 50% 10svw;
+
+            transition: top .2s linear;
+
+
+            &.start {
+                animation: start 3s linear;
+                transform: rotateX(0deg);
+                top: 20svw;
+
+                &.rotate {
+                    animation: infinite linear 20s sceneRotate;
+                }
+            }
+        }
+    }
+}
+@keyframes start {
+    from {
+        transform: rotateX(-90deg) translateZ(-30svw);
+        top: 0svw;
+    }
+    to {
+        transform: rotateX(0deg);
+        top: 20svw;
+    }
+}
+@keyframes sceneRotate {
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+
+.cube {
+    position: relative;
+    transform-style: preserve-3d;
+    top: -1svw;
+    left: -1svw;
+    height: 10svw;
+    width: 20svw;
+    transform-origin: 50% 50% 10svw;
+
+    .left, .right, .front, .back, .top, .bottom {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: gray;
+        box-shadow: 0 0 10svw #000 inset;
+    }
+    .front {
+        transform: translateZ(20svw);
+    }
+    .left {
+        transform: rotateY(90deg) translateZ(10svw) translateX(-10svw);
+    }
+    .right {
+        transform: rotateY(270deg) translateZ(10svw) translateX(10svw);
+    }
+    .top {
+        height: 200%;
+        transform: rotateX(90deg) translateZ(10svw) translateY(10svw);
+    }
+    .bottom {
+        position: absolute;
+        width: 100%;
+        height: 200%;
+        transform: rotateX(270deg) translateZ(0svw) translateY(-10svw);
+    }
+}
+#visit {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h1{
+        margin: 0;
+        font-size: 4.5svw;
+        text-align: center;
+        user-select: none;
+    }
+
+    p {
+        padding: 0;
+        margin: 0;
+        margin-top: 2svw;
+        font-size: 3svw;
+        user-select: none;
+        position: relative;
+        top: 40%;
+        height: 100%;
+        text-align: center;
+        text-decoration: underline solid;
+    }
+}
+.selectedCube{
+    animation: reverse sceneRotate 20s infinite linear;
+}
