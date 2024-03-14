@@ -128,3 +128,29 @@ body {
 .selectedCube{
     animation: reverse sceneRotate 20s infinite linear;
 }
+
+
+.css-selector {
+    background: linear-gradient(270deg, #00d2ff, #6a68ff, #abaaff);
+    background-size: 600% 600%;
+
+    -webkit-animation: shaderGradient 9s ease infinite;
+    -moz-animation: shaderGradient 9s ease infinite;
+    animation: shaderGradient 9s ease infinite;
+}
+
+@-webkit-keyframes shaderGradient {
+    0%{background-position:42% 0%}
+    50%{background-position:59% 100%}
+    100%{background-position:42% 0%}
+}
+@-moz-keyframes shaderGradient {
+    0%{background-position:42% 0%}
+    50%{background-position:59% 100%}
+    100%{background-position:42% 0%}
+}
+@keyframes shaderGradient {
+    0%{background-position:42% 0%}
+    50%{background-position:59% 100%}
+    100%{background-position:42% 0%}
+}
