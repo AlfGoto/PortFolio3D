@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
         cube.addEventListener('mouseout', () => {
-            if (cube.classList.contains('selectedCube')) { return }
+            // if (cube.classList.contains('selectedCube')) { return }
             Array.from(cube.children).forEach((e) => {
                 e.classList.remove('borderAnimate')
             })

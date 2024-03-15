@@ -2,7 +2,7 @@
     --animationSpeed: 20s
 }
 * {
-    font-family: sans-serif;
+    font-family: Bradley Hand, cursive;
     box-sizing: border-box;
 }
 
@@ -123,7 +123,6 @@ body {
     p {
         padding: 0;
         margin: 0;
-        margin-top: 2svw;
         font-size: 3svw;
         user-select: none;
         position: relative;
@@ -184,13 +183,18 @@ body {
 .video {
     max-height: 90%;
     max-width: 90%;
+    transform: translateZ(1svw);
 }
 
 #ExplanationSection {
     position: absolute;
     width: 30svw;
-    top: 10svw;
     padding: 1svw;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
 
 
     h1 {
@@ -216,16 +220,15 @@ body {
 }
 #langages {
     position: absolute;
-    width: 30svw;
+    max-width: 30svw;
     top: 15svw;
-    right: 0svw;
+    left: 70svw;
     padding: 1svw;
     display: flex;
     flex-wrap: wrap;
-    gap: 1svw;
     
     img {
-        border-radius: 1svw;
+        padding: 1svw;
         background-color: rgba(255, 255, 255, 0.162);
         backdrop-filter: blur(2px);
         width: 9svw;
