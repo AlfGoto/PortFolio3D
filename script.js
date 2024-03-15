@@ -6,10 +6,13 @@ class video {
         this.languages = languages
     }
     load() {
-        let Explh1 = document.getElementById('Explh1')
-        let ExplP = document.getElementById('ExplP')
+        document.getElementById('ExplanationSection').innerHTML = ''
+        let Explh1 = document.createElement('h1')
+        let ExplP = document.createElement('p')
         Explh1.innerHTML = this.name
         ExplP.innerHTML = this.explanation
+        document.getElementById('ExplanationSection').appendChild(Explh1)
+        document.getElementById('ExplanationSection').appendChild(ExplP)
 
         let langages = document.getElementById('langages')
         langages.innerHTML = ''

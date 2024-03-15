@@ -163,7 +163,7 @@ body {
 }
 
 .video{
-    width: 90%;
+    width: 80%;
 }
 
 #ExplanationSection{
@@ -174,11 +174,13 @@ body {
 
     h1{
         font-size: 4svw;
+        animation: slideFromRight .5s linear;
     }
     p{
         font-size: 1.5svw;
         justify-content: center;
         line-height: 2svw;
+        animation: slideFromRight .5s linear;
     }
 }
 #langages{
@@ -193,5 +195,13 @@ body {
 
     img{
         width: 9svw;
+        animation: slideFromLeft .5s linear;
     }
+}
+
+@keyframes slideFromLeft{
+    from{transform: translateX(50svw);}
+}
+@keyframes slideFromRight{
+    from{transform: translateX(-50svw);}
 }
