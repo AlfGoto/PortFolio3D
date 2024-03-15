@@ -1,3 +1,7 @@
+
+let clickable = true
+
+
 class video {
     constructor(name, explanation, languages) {
         this.name = name
@@ -21,6 +25,7 @@ class video {
             langages.appendChild(logo)
             logo.src = 'logo/' + e + '.png'
         })
+        clickable = true
     }
     video(dom) {
         if (document.getElementsByClassName('video')[0] != null) { document.getElementsByClassName('video')[0].remove() }
@@ -52,20 +57,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let plan3D = document.getElementById('plan3D')
     let cubesARR = document.getElementsByClassName('cube')
 
+    portfolio.load()
 
     document.querySelector('#un .top').addEventListener('click', () => {
         document.getElementById('visit').remove()
         plan3D.classList.add('start')
 
         setTimeout(() => {
-            portfolio.load()
-
             plan3D.classList.add('rotate')
             let previousCube = 8
             let newCube = 8
 
             let time = 0
+            newCube = 0
             var interval = window.setInterval(() => {
+                nuages()
                 if (time++ == 4) { clearInterval(interval) }
                 if (newCube != previousCube) {
                     cubesARR[previousCube].classList.remove('selectedCube')
@@ -84,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 let time = 0
                 var interval = window.setInterval(() => {
+                    nuages()
                     if (time++ == 4) { clearInterval(interval) }
                     if (newCube != previousCube) {
                         cubesARR[previousCube].classList.remove('selectedCube')
@@ -97,12 +104,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
             for (let i = 0; i < cubesARR.length; i++) {
                 cubesARR[i].addEventListener('click', () => {
+                    if (!clickable) { return }
+                    clickable = false
                     newCube = i
                     document.getElementById('plan3D').style.top = ((i * 10 - 10) * -1) + 'svw'
                 })
             }
         }, 3000)
     })
+
+
+    for (let i = 0; i < cubesARR.length; i++) {
+        let cube = cubesARR[i]
+        cube.addEventListener('mouseover', () => {
+            if (cube.classList.contains('selectedCube')) { return }
+            Array.from(cube.children).forEach((e) => {
+                e.classList.add('borderAnimate')
+            })
+        })
+        cube.addEventListener('mouseout', () => {
+            if (cube.classList.contains('selectedCube')) { return }
+            Array.from(cube.children).forEach((e) => {
+                e.classList.remove('borderAnimate')
+            })
+        })
+    }
 
 })
 
@@ -119,4 +145,16 @@ function timeToSide(time) {
             return 'right'
     }
 }
+function nuages(){
+    let img = 'img/cloud' + (Math.floor(Math.random() * 4 + 1)) + '.png'
+    let size = (Math.floor(Math.random() * (5 - 2 + 1) + 2)) + 'svw'
+    let Y = (Math.floor(Math.random() * (95 - 5 + 1) + 5)) + 'svh'
+    let nuage = document.createElement('img')
+    nuage.src = img
+    document.body.appendChild(nuage)
+    nuage.style.top = Y
+    nuage.style.height = size
+    nuage.classList.add('nuage')
 
+    setTimeout(()=>{nuage.remove()}, 30000)
+}
