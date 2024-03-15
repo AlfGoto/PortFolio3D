@@ -163,5 +163,35 @@ body {
 }
 
 .video{
-    height: 90%;
+    width: 90%;
+}
+
+#ExplanationSection{
+    position: absolute;
+    width: 30svw;
+    top: 10svw;
+    padding: 1svw;
+
+    h1{
+        font-size: 4svw;
+    }
+    p{
+        font-size: 1.5svw;
+        justify-content: center;
+        line-height: 2svw;
+    }
+}
+#langages{
+    position: absolute;
+    width: 30svw;
+    top: 15svw;
+    right: 0svw;
+    padding: 1svw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1svw;
+
+    img{
+        width: 9svw;
+    }
 }

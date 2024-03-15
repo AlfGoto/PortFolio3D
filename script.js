@@ -1,35 +1,46 @@
-class video{
-    constructor(name, explanation, languages){
+class video {
+    constructor(name, explanation, languages) {
         this.name = name
         this.path = 'video/' + name + '.mp4'
         this.explanation = explanation
         this.languages = languages
     }
+    load() {
+        let Explh1 = document.getElementById('Explh1')
+        let ExplP = document.getElementById('ExplP')
+        Explh1.innerHTML = this.name
+        ExplP.innerHTML = this.explanation
+
+        let langages = document.getElementById('langages')
+        langages.innerHTML = ''
+        this.languages.forEach((e) => {
+            let logo = document.createElement('img')
+            langages.appendChild(logo)
+            logo.src = 'logo/' + e + '.png'
+        })
+    }
+    video(dom) {
+        if (document.getElementsByClassName('video')[0] != null) { document.getElementsByClassName('video')[0].remove() }
+
+        let video = document.createElement('video')
+        video.classList.add('video')
+        video.muted = true
+        video.controls = true
+        video.autoplay = true
+        video.loop = true
+        dom.appendChild(video)
+        video.src = this.path
+
+        this.load()
+    }
 }
 
 
 var videoARR = [
-    new video('minesweeper', 'This is my first website, i did it to learn all the basics. It is a minesweeper game done in particular using the websocket for the fastest players', ['Javascript', 'PHP', 'MYSQL', 'CSS', 'HTML']), 
-    new video('fenetreS', 'This is a little project done with the curiosity to see if it was possible', ['Javascript', 'CSS', 'HTML'])
+    new video('minesweeper', 'This is my first website, i did it to learn all the basics. It is a minesweeper game done in particular using the websocket for the fastest players. This project is accessible via minesweeper.fr', ['JS', 'PHP', 'MYSQL', 'CSS']),
+    new video('fenetreS', 'This is a little project done just to see if it was possible. It was fun to do and the effect is really cool. It could be useful sometime later !', ['JS', 'CSS'])
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var portfolio = new video('Portfolio', 'I Wanted to use this Portofolio as an excuse to show something interesting. So i made my portfolio using Vanilla CSS perspective and some JS to cycle between the projets. You can see all my projects by clicking on the cubes. Don\'t hesitate to see the videos in fullscreen !', ['CSS'])
 
 
 
@@ -44,9 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
         plan3D.classList.add('start')
 
         setTimeout(() => {
+            portfolio.load()
+
             plan3D.classList.add('rotate')
             let previousCube = 8
-            let newCube = 0
+            let newCube = 8
 
             let time = 0
             var interval = window.setInterval(() => {
@@ -56,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     cubesARR[newCube].classList.add('selectedCube')
                     previousCube = newCube
 
-                    createVideo(document.querySelector(".selectedCube ." + timeToSide(time - 1)))
+                    videoARR[newCube].video(document.querySelector(".selectedCube ." + timeToSide(time - 1)))
                 } else {
                     cubesARR[previousCube].classList.remove('selectedCube')
                     setTimeout(() => { cubesARR[previousCube].classList.add('selectedCube') }, 0.1)
@@ -74,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         cubesARR[newCube].classList.add('selectedCube')
                         previousCube = newCube
 
-                        createVideo(document.querySelector(".selectedCube ." + timeToSide(time - 1)))
+                        videoARR[newCube].video(document.querySelector(".selectedCube ." + timeToSide(time - 1)))
                     }
                 }, 5000)
             })
@@ -90,18 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
-function createVideo(dom) {
-    console.log('video creation')
-    if (document.getElementsByClassName('video')[0] != null) { document.getElementsByClassName('video')[0].remove() }
-    let index = dom.parentElement.getAttribute('pos')
-    let video = document.createElement('video')
-    video.classList.add('video')
-    video.muted = true
-    video.controls = true
-    video.autoplay = true
-    dom.appendChild(video)
-    video.src = videoARR[index].path
-}
 
 function timeToSide(time) {
     switch (time) {
