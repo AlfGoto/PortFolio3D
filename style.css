@@ -80,6 +80,10 @@ body {
         height: 100%;
         background: gray;
         box-shadow: 0 0 10svw #000 inset;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .front {
         transform: translateZ(20svw);
@@ -156,4 +160,8 @@ body {
     0%{background-position:42% 0%}
     50%{background-position:59% 100%}
     100%{background-position:42% 0%}
+}
+
+.video{
+    height: 90%;
 }
