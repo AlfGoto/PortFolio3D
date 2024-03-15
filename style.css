@@ -1,3 +1,6 @@
+:root{
+    --animationSpeed: 20s
+}
 * {
     font-family: sans-serif;
 }
@@ -39,7 +42,7 @@ body {
                 top: 20svw;
 
                 &.rotate {
-                    animation: infinite linear 20s sceneRotate;
+                    animation: linear var(--animationSpeed) sceneRotate;
                 }
             }
         }
@@ -126,7 +129,8 @@ body {
     }
 }
 .selectedCube{
-    animation: reverse sceneRotate 20s infinite linear;
+    rotate: y 360deg;
+    animation: reverse sceneRotate var(--animationSpeed) linear infinite;
 }
 
 
@@ -138,7 +142,6 @@ body {
     -moz-animation: shaderGradient 9s ease infinite;
     animation: shaderGradient 9s ease infinite;
 }
-
 @-webkit-keyframes shaderGradient {
     0%{background-position:42% 0%}
     50%{background-position:59% 100%}
